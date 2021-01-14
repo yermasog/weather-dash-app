@@ -31,11 +31,18 @@ $(function () {
             console.log(boogers)
             $("#UV").text("UV Index: " + boogers.current.uvi);
 
-            var dailytemp = boogers.daily[0].temp.day
-            $("#today").text("Temp: " + dailytemp + " °F")  
+            //DATE
+            // var dailyicon = boogers.daily
+            // // openweathermap.org/img/w/"icon".png
+            // $("#todayicon").attr()
 
-            var dailyhumid = boogers.daily[0].feels_like.humidity
-            $("#todayhumid").text("Humidity: " + dailyhumid + "%")
+            var dailytemp = boogers.daily[0].temp.day
+            $("#todaytemp").text("Temp: " + dailytemp + " °F")  
+
+            var dailyhumid = boogers.daily[0].humidity
+            $("#todayhumid").text("Humidity: " + dailyhumid + " %")
+
+
              
             
         });
