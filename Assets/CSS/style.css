@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+  }
+
+  .main {
+    width: 75%;
+    float: right;
+    padding: 15px;
+    
+  }
+
+  .daily {
+    width: 75%;
+    float: right;
+    padding: 15px;
+    
+  }
+
+  .aside {
+    width: 25%;
+    float: left;
+    padding: 15px;
+    
+  }
