@@ -1,10 +1,11 @@
 $(function () {
     // console.log("ready!");
-    var cityName = "minneapolis"
+    var cityHistory = [];
+    var cityName = ""
     var queryURL = "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=18687cf1c7c1d78e93e8472d225dee33&units=imperial"
 
     $("#submitBtn").on("click", function () {
-        cityName = $("#submitBtn").val()
+        cityName = $("#submitBtn").val().trim()
         // console.log(cityName)
     })
 
@@ -13,12 +14,14 @@ $(function () {
         method: "GET"
     }).then(function (response) {
         // console.log(response)
-        console.log(response.name)
+        // console.log(response.name)
 
         $("#city-title").text(response.name);
         $("#temp").text("Temperature: " + response.main.temp + " °F");
         $("#humidity").text("Humidity: " + response.main.humidity + "%");
         $("#wind").text("Wind Speed: " + response.wind.speed + " MPH");
+        cityHistory.push(response.name);
+        localStorage.setItem("oldCities", JSON.stringify(cityHistory))
 
 
         var lat = response.coord.lat;
@@ -49,6 +52,18 @@ $(function () {
 
         });
     });
+    function returnHistory() {
+        cityHistory = JSON.parse((localStorage.getItem("oldCities"))) || []
+        for (let index = 0; index < 6; index++) {
+            var result = cityHistory[cityHistory.length - index];
+            if (result) {
+                $(".recent-cities").text(result)
+            }
 
+
+        }
+    }
+
+    returnHistory()
 
 });    
