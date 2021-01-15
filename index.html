@@ -15,46 +15,77 @@
     </header>
     <div class="w3-container">
         <div class="w3-row">
-            <aside class="w3-third w3-margin-top aside">
+            <aside class="w3-cell aside">
                 <form>
-                    <label for="city">Search for a City</label>
-                    <input type="text" id="cityName">
+                    <label class="w3-text-dark-grey"><b>Search for a City</b></label>
+                    <input class="w3-input w3-border w3-light-grey" type="text" id="cityName">
                     <button class="w3-margin-top w3-btn w3-round w3-dark-grey" type="submit" id="submitBtn"
                         value="submit">Search</button>
                 </form>
-                <div class="recent-cities">
-
+                <div class="w3-hover-shadow">
+                    <p id="recent1"></p>
+                    <p id="recent2"></p>
+                    <p id="recent3"></p>
+                    <p id="recent4"></p>
+                    <p id="recent5"></p>
                 </div>
             </aside>
-            <main class="w3-twothird w3-border w3-margin-top main">
+            <main class="w3-cell w3-border w3-margin-top main">
                 <div>
                     <h2 id="city-title" data-name="city"></h2>
+                    <div id="date"></div>
                     <div id="temp"></div>
                     <div id="humidity"></div>
                     <div id="wind"></div>
                     <div id="UV">UV Index</div>
                 </div>
             </main>
-            <br>
-            <div class="w3-row">
-                <div class="daily w3-card w3-margin-top">
-                    <header>
-                        <p id="today">Date</p>
-                    </header>
-                    <a ><img id="todayicon"></a>
-                    <div id="todaytemp">temp</div>
-                    <div id="todayhumid">humidity</div>
-                </div>
-                <div class="daily w3-card w3-margin-top">
-                    <header>
-                        <p id="today2">Date</p>
-                    </header>
-                    <a ><img></a>
-                    <div id="todaytemp2">temp</div>
-                    <div id="todayhumid2">humidity</div>
-                </div>
-            </div>
         </div>
+        <br>
+        <div class="w3-row">
+            <div class="daily w3-card w3-margin-top">
+                <header>
+                    <p id="day1">Date</p>
+                </header>
+                <a><img id="day1icon"></a>
+                <div id="day1temp">temp</div>
+                <div id="day1humid">humidity</div>
+            </div>
+            <div class="daily w3-card w3-margin-top">
+                <header>
+                    <p id="day2">Date</p>
+                </header>
+                <a><img id="day2icon"></a>
+                <div id="day2temp">temp</div>
+                <div id="day2humid">humidity</div>
+            </div>
+            <div class="daily w3-card w3-margin-top">
+                <header>
+                    <p id="day3">Date</p>
+                </header>
+                <a><img id="day3icon"></a>
+                <div id="day3temp">temp</div>
+                <div id="day3humid">humidity</div>
+            </div>
+            <div class="daily w3-card w3-margin-top">
+                <header>
+                    <p id="day4">Date</p>
+                </header>
+                <a><img id="day4icon"></a>
+                <div id="day4temp">temp</div>
+                <div id="day4humid">humidity</div>
+            </div>
+            <div class="daily w3-card w3-margin-top">
+                <header>
+                    <p id="day5">Date</p>
+                </header>
+                <a><img id="day5icon"></a>
+                <div id="day5temp">temp</div>
+                <div id="day5humid">humidity</div>
+            </div>
+
+        </div>
+    </div>
     </div>
 
     </div>
@@ -62,6 +93,7 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="Assets/JS/script.js"></script>
 </body>
 
