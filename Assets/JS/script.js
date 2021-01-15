@@ -1,22 +1,16 @@
 $(function () {
-    // console.log("ready!");
     var cityHistory = [];
     var cityName;
-
 
     $("#submitBtn").on("click", function (event) {
         event.preventDefault()
         cityName = $("#cityName").val().trim()
-        console.log(cityName)
-
 
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=18687cf1c7c1d78e93e8472d225dee33&units=imperial"
         $.ajax({
             url: queryURL,
             method: "GET"
         }).then(function (response) {
-            console.log(response)
-            // console.log(response.name)
 
             $("#city-title").text(response.name)
             $("#date").text(moment().format("MMM Do YYYY"));
@@ -26,10 +20,9 @@ $(function () {
             cityHistory.push(response.name);
             localStorage.setItem("oldCities", JSON.stringify(cityHistory))
 
-
             var lat = response.coord.lat;
             var lon = response.coord.lon;
-            var icon = response.weather[0].icon
+            // var icon = response.weather[0].icon
 
             var UVquery = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=18687cf1c7c1d78e93e8472d225dee33&units=imperial"
 
@@ -37,23 +30,32 @@ $(function () {
                 url: UVquery,
                 method: "GET"
             }).then(function (boogers) {
-                // console.log(boogers)
+                console.log(boogers)
                 $("#UV").text("UV Index: " + boogers.current.uvi);
 
-                //DATE
-                var dailyicon = "https://openweathermap.org/img/w/" + icon + ".png"
-                $("#day1icon").attr("src", dailyicon)
-                // console.log(dailyicon)
-                // console.log(icon)
+                // $("#day1").text(moment().add(1, 'days').format("MMM Do"))
+                for (let i = 0; i < 5; i++) {
+                    $("#day" + i).text(moment().add((i + 1), 'days').format("MMM Do"));
+                }
+                // var dailyicon = "https://openweathermap.org/img/w/" + icon + ".png"
+                // $("#day1icon").attr("src", dailyicon)
 
-                var dailytemp = boogers.daily[0].temp.day
-                $("#day1temp").text("Temp: " + dailytemp + " °F")
+                for (let i = 0; i < 5; i++) {
+                    var icon = boogers.daily[(0 + i)].weather[0].icon;
+                    var dailyicon = "https://openweathermap.org/img/w/" + icon + ".png";
+                    $("#day" + i + "icon").attr("src", dailyicon)
+                    
+                }
 
-                var dailyhumid = boogers.daily[0].humidity
-                $("#day1humid").text("Humidity: " + dailyhumid + " %")
+                for (let i = 0; i < 5; i++) {
+                    var dailytemp = boogers.daily[(0 + i)].temp.day;
+                    $("#day" + i + "temp").text("Temp: " + dailytemp + " °F");
+                }
 
-
-
+                for (let i = 0; i < 5; i++) {
+                    var dailyhumid = boogers.daily[(0 + i)].humidity;
+                    $("#day" + i + "humid").text("Humidity: " + dailyhumid + " %");
+                }
 
             });
         });
