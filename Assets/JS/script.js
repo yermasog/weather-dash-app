@@ -1,10 +1,25 @@
 $(function () {
     var cityHistory = [];
+    var cityName = "Minneapolis"
+
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=18687cf1c7c1d78e93e8472d225dee33&units=imperial"
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+        displayCity()
+    });
 
     $("#submitBtn").on("click", function (event) {
         event.preventDefault()
         cityName = $("#cityName").val().trim()
 
+        displayCity()
+    })
+
+    
+
+    function displayCity() {
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=18687cf1c7c1d78e93e8472d225dee33&units=imperial"
         $.ajax({
             url: queryURL,
@@ -43,7 +58,8 @@ $(function () {
                 }
             });
         });
-    })
+    }
+
     function returnHistory() {
         cityHistory = JSON.parse((localStorage.getItem("oldCities"))) || []
         for (let index = 0; index < 6; index++) {
