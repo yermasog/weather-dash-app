@@ -1,23 +1,21 @@
 $(function () {
     var cityHistory = [];
-    var cityName = "Minneapolis"
-
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=18687cf1c7c1d78e93e8472d225dee33&units=imperial"
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
-        displayCity()
-    });
 
     $("#submitBtn").on("click", function (event) {
         event.preventDefault()
         cityName = $("#cityName").val().trim()
 
         displayCity()
+        returnHistory() 
+        
     })
 
-    
+    $(".historyBtn").on("click", function (event) {
+        event.preventDefault()
+        cityName = $(this).val()
+
+        displayCity()
+    })
 
     function displayCity() {
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=18687cf1c7c1d78e93e8472d225dee33&units=imperial"
@@ -65,13 +63,17 @@ $(function () {
         for (let index = 0; index < 6; index++) {
             var result = cityHistory[cityHistory.length - index];
             if (result) {
-                $("#recent1").text(result)
+                var recentCities = $("#recentCities");
+                var recent = $("<button>").attr({id: "recent" + index, class: "historyBtn w3-button w3-block w3-dark-grey"});
+                recent.text(result);
+                recentCities.append(recent);
+
             }
 
 
         }
     }
 
-    returnHistory()
+    
 
 });    
